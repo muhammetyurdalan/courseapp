@@ -1,25 +1,38 @@
-{%extends 'layout.html'%}
+"{%extends 'layout.html'%}
 
 {%block 'content'%}
 <div class="container">
     <div class="row">
         <div class="col-3 mt-3">
-            <ul class="list-group">
-                <li class="list-group-item list-group-item-warning">Mobil Programlama</li>
-                <li class="list-group-item list-group-item-warning">Web Geliştirme</li>
-                <li class="list-group-item list-group-item-warning">Oyun Programlama</li>
-                <li class="list-group-item list-group-item-warning">Ai</li>
-                <li class="list-group-item list-group-item-warning">Görüntü İşleme</li>
+            {%include 'partials/_categories.html' %}
 
-            </ul>
+
         </div>
         <div class="col-9">
 
+            <div class="container text-center">
+                <div class="row">
+
+                    {% for course in courses %}
+                        {% if course.isActive %}
+                            {%include 'partials/_course.html' %}
+                         {%endif%}
+
+
+                    {% endfor %}
+
+                </div>
+            </div>
         </div>
+
+
+
+
     </div>
+</div>
 </div>
 {%endblock%}
 
 {%block 'title'%}
 Kurslar
-{%endblock%}
+{%endblock%}"

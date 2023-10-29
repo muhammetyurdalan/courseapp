@@ -1,0 +1,7 @@
+<div class="list-group">
+    {% for category in categories %}
+    <a href="{% url 'courses_by_category' category.slug%}" class="list-group-item list-group-item-warning">{{category.name}}</a>
+    <!-- burada url ler dinamik olarak oluşturulur.name olarak courses_by_category belirlesğimiz url nin sonuna itemler eklenir.-->
+    {% endfor %} 
+
+</div>
