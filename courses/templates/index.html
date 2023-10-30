@@ -1,5 +1,11 @@
 "{%extends 'layout.html'%}
 
+{% load static %}
+
+{%block 'css_files'%}
+<link rel="stylesheet" href="{% static 'course/js/style.css' %}">
+{%endblock%}
+
 {%block 'content'%}
 <div class="container">
     <div class="row">
@@ -36,3 +42,7 @@
 {%block 'title'%}
 Kurslar
 {%endblock%}"
+
+{%block 'js_files'%}
+<script src="{% static 'course/js/script.js' %}"></script>
+{%endblock%}

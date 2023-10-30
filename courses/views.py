@@ -16,24 +16,27 @@ db={
         {"title":"Javascript Kursu",
          "description":"Javascript Kurs Açıklaması",
          "slug":"javascript-course",
-         "imageUrl":"https://northsoft.co/blog/wp-content/uploads/2022/11/image-1024x538.jpeg",
+         "imageUrl":"js.jpeg",
          "date":date(2023,10,10),
-         "isActive":True
+         "isActive":True,
+         "isUptaded":False
             
             },
         {"title":"Python Kursu",
          "description":"Python Kurs Açıklaması",
          "slug":"python-course",
-         "imageUrl":"https://miro.medium.com/v2/resize:fit:1400/1*m0H6-tUbW6grMlezlb52yw.png",
+         "imageUrl":"python.png",
          "date":date(2023,10,10),
-         "isActive":False
+         "isActive":False,
+         "isUptaded":False
             },
         {"title":"Java kursu",
          "description":"Java Kurs Açıklaması",
          "slug":"java-course",
-         "imageUrl":"https://www.bilgiyazan.com.tr/wp-content/uploads/2015/07/Java-E%C4%9Fitimi.jpg",
+         "imageUrl":"java.jpg",
          "date":date(2023,10,10),
-         "isActive":True
+         "isActive":True,
+         "isUptaded":True
             }
     ],
     "categories":[{"id":1,"name":"Programlama","slug":"programlama"},
@@ -111,6 +114,9 @@ def getCoursesByCategoryId(req,category_id):
 
 def index(req):
     courses=db["courses"]
+    #courses=[course for course in db["courses"] if course["isActive"]s==True]
+    #Sayfaya direk filtrelenmiş veriyi gönderbiliriz.Böylece template kısmında filtre yapmaya gerek kalmaz
+    
     categories=db["categories"]
     return render(req,"index.html",{"courses":courses,"categories":categories})
 #eğer index.html aynı app içinde bulunmazsa diğer appler içinde aranır
