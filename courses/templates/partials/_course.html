@@ -5,15 +5,14 @@
         <div class="card" style="width: 18rem;">
             <img src={% static 'courses/img/'|add:course.imageUrl %} class="card-img-top" alt={{course.title}} style="height: 12rem;">
             <div class="card-body" style="height: 12rem;">
-                <h5 class="card-title">{{course.title}}</h5>
-                <p class="card-text">{{course.description|truncatechars:15}}</p>
-                <a href="{% url 'courses_by_category' course.slug%}" class="btn btn-primary">Git</a>
-                <p>
-                    {% if course.isUptaded %}
+                <a href={% url 'course_details_url' course.id %}><h5 class="card-title">{{course.title|title}}</h5></a>
+                <p class="card-text">{{course.description|truncatechars:15|title}}</p>
+               
+                    <!-- {% if course.isUptaded %}
                         <span class="badge bg-success mt-2">Güncellendi</span>
                         {% else %}
                         <span class="badge bg-warning mt-2">Güncelleme Bekliyor</span>
-                    {%endif%}
+                    {%endif%} -->
 
                 </p>
                 <p>{{course.date|date:"SHORT_DATE_FORMAT"}}</p>

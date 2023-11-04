@@ -1,0 +1,43 @@
+"{%extends 'layout.html'%}
+
+{% load static %}
+
+{%block 'css_files'%}
+<link rel="stylesheet" href="{% static 'course/js/style.css' %}">
+{%endblock%}
+
+{%block 'content'%}
+<div class="container">
+    <div class="row">
+        <div class="col-3 mt-3">
+            <img class="img-fluid rounded-start" src={% static 'courses/img/'|add:course.imageUrl %}
+                alt="{{course.title}}">
+
+        </div>
+        <div class="col-9">
+
+            <div class="container text-center">
+                <div class="row">
+
+                    <h1>{{course.title|title}}</h1>
+                    
+                    <p>{{course.description}}</p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+</div>
+{%endblock%}
+
+{%block 'title'%}
+{{course.title}}
+{%endblock%}"
+
+{%block 'js_files'%}
+<script src="{% static 'course/js/script.js' %}"></script>
+{%endblock%}

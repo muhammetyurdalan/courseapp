@@ -1,7 +1,8 @@
 from datetime import date
-from django.shortcuts import render,redirect
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render,redirect
+from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from .models import Categories, Course
 
 # Create your views here.
 
@@ -58,12 +59,28 @@ db={
 
 
 
+# def fillTheSlug():
+#     course=Course.objects.all()
+#     for c in course:
+#         c.save()
 
 
 
-
-# def details(req,courseName):
-#     return HttpResponse(f"{courseName} Kursu Detayları sayfası")
+def details(req,course_id):
+    try:
+        course=Course.objects.get(pk=course_id)
+    except:
+        raise Http404()
+    #fillTheSlug()   bu fonksiyonu slug alanını doldurmak için yazdım
+    
+    #yukardaki kodun kısaltılmışı aşağıdaki metotdur
+    course=get_object_or_404(Course,pk=course_id)
+    
+    context={
+        "course":course
+    }
+    
+    return render (req,"details.html",context)
 
 # def mobiluygulamalar(req):
 #     return HttpResponse("Mobil Uygulamalar sayfası")
@@ -113,11 +130,15 @@ def getCoursesByCategoryId(req,category_id):
 
 
 def index(req):
-    courses=db["courses"]
+    #courses=db["courses"]
+    #Artık verimizi static verimizden değil gerçek db den çekecez
+    
+    courses=Course.objects.filter(isActive=1)
+    
     #courses=[course for course in db["courses"] if course["isActive"]s==True]
     #Sayfaya direk filtrelenmiş veriyi gönderbiliriz.Böylece template kısmında filtre yapmaya gerek kalmaz
     
-    categories=db["categories"]
+    categories=Categories.objects.all()
     return render(req,"index.html",{"courses":courses,"categories":categories})
 #eğer index.html aynı app içinde bulunmazsa diğer appler içinde aranır
 #settings.py içindeki appçdirs=true bunu enable eder
