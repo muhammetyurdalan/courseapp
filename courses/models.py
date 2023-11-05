@@ -9,7 +9,8 @@ class Course(models.Model):
     imageUrl=models.CharField(max_length=50)
     date=models.DateField(datetime.now())
     isActive=models.BooleanField()
-    slug=models.SlugField(default="",null=False)
+    slug=models.SlugField(default="",null=False,unique=True,db_index=True)
+    isUptaded=models.BooleanField(default=True)
     
     
     def save(self,*args,**kwargs):

@@ -66,15 +66,15 @@ db={
 
 
 
-def details(req,course_id):
-    try:
-        course=Course.objects.get(pk=course_id)
-    except:
-        raise Http404()
+def details(req,course_slug):
+    # try:
+    #     course=Course.objects.get(slug=course_slug)
+    # except:
+    #     raise Http404()
     #fillTheSlug()   bu fonksiyonu slug alanını doldurmak için yazdım
     
     #yukardaki kodun kısaltılmışı aşağıdaki metotdur
-    course=get_object_or_404(Course,pk=course_id)
+    course=get_object_or_404(Course,slug=course_slug)
     
     context={
         "course":course
