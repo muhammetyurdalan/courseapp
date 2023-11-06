@@ -9,5 +9,5 @@ urlpatterns = [
     path("",views.index),
     path("<slug:course_slug>",views.details,name="course_details_url"),
     path("category/<int:category_id>",views.getCoursesByCategoryId),
-    path("category/<str:category_name>",views.getCoursesByCategoryName,name="courses_by_category")
+    path("category/<str:category_slug_name>",views.getCoursesByCategoryName,name="courses_by_category")
 ]
