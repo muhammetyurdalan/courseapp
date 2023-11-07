@@ -6,44 +6,44 @@ from .models import Categories, Course
 
 # Create your views here.
 
-data={
-    "programlama":"Pogramlama kursu Listesi",
-    "web-gelistirme":"Web Gelistirme kursu Listesi",
-    "mobil-programlama":"Mobil Pogramlama kursu Listesi"
-}
+# data={
+#     "programlama":"Pogramlama kursu Listesi",
+#     "web-gelistirme":"Web Gelistirme kursu Listesi",
+#     "mobil-programlama":"Mobil Pogramlama kursu Listesi"
+# }
 
-db={
-    "courses":[
-        {"title":"Javascript Kursu",
-         "description":"Javascript Kurs Açıklaması",
-         "slug":"javascript-course",
-         "imageUrl":"js.jpeg",
-         "date":date(2023,10,10),
-         "isActive":True,
-         "isUptaded":False
+# db={
+#     "courses":[
+#         {"title":"Javascript Kursu",
+#          "description":"Javascript Kurs Açıklaması",
+#          "slug":"javascript-course",
+#          "imageUrl":"js.jpeg",
+#          "date":date(2023,10,10),
+#          "isActive":True,
+#          "isUptaded":False
             
-            },
-        {"title":"Python Kursu",
-         "description":"Python Kurs Açıklaması",
-         "slug":"python-course",
-         "imageUrl":"python.png",
-         "date":date(2023,10,10),
-         "isActive":False,
-         "isUptaded":False
-            },
-        {"title":"Java kursu",
-         "description":"Java Kurs Açıklaması",
-         "slug":"java-course",
-         "imageUrl":"java.jpg",
-         "date":date(2023,10,10),
-         "isActive":True,
-         "isUptaded":True
-            }
-    ],
-    "categories":[{"id":1,"name":"Programlama","slug":"programlama"},
-                  {"id":2,"name":"Web Geliştirme","slug":"web-gelistirme"},
-                  {"id":3,"name":"Mobil Programlama","slug":"mobil-programlama"}]
-}
+#             },
+#         {"title":"Python Kursu",
+#          "description":"Python Kurs Açıklaması",
+#          "slug":"python-course",
+#          "imageUrl":"python.png",
+#          "date":date(2023,10,10),
+#          "isActive":False,
+#          "isUptaded":False
+#             },
+#         {"title":"Java kursu",
+#          "description":"Java Kurs Açıklaması",
+#          "slug":"java-course",
+#          "imageUrl":"java.jpg",
+#          "date":date(2023,10,10),
+#          "isActive":True,
+#          "isUptaded":True
+#             }
+#     ],
+#     "categories":[{"id":1,"name":"Programlama","slug":"programlama"},
+#                   {"id":2,"name":"Web Geliştirme","slug":"web-gelistirme"},
+#                   {"id":3,"name":"Mobil Programlama","slug":"mobil-programlama"}]
+# }
 
 # #dinamik olarak html etiketleri oluşturduk
 # def course(req):
