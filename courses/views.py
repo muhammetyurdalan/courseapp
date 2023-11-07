@@ -59,11 +59,6 @@ db={
 
 
 
-# def fillTheSlug():
-#     course=Course.objects.all()
-#     for c in course:
-#         c.save()
-
 
 
 def details(req,course_slug):
