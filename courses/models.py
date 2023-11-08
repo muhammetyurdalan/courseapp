@@ -39,7 +39,11 @@ class Course(models.Model):
     #SET_DEFAULT atayıp default=1 dersek silindiğinde kolona 1 değeri set edilir
     
     #related_name ile sorgularda kullanacağımı hayali kolona isim verebiliriz.Açıklama aşağıda
-    category=models.ForeignKey(Categories,default=1,on_delete=models.CASCADE,related_name="selectedCourses")
+    #category=models.ForeignKey(Categories,default=1,on_delete=models.CASCADE,related_name="selectedCourses")
+    
+    #çoka çok ilişki kurmak için aşağıdaki alanı eklemeliyiz.Django otomatik olarak 3. bir ilşki tablosu oluşturur.
+    #ve foreignkey alanı silinmeli çünkü ilşkiyi django otomatşk kurar
+    categories=models.ManyToManyField(Categories)
     
     
     def save(self,*args,**kwargs):
@@ -51,7 +55,7 @@ class Course(models.Model):
         return f"{self.title}"
     
 
-    #İlşikili Kayıda ulaşma
+    #1-M İlşikili Kayıda ulaşma
     
     #1-kurs modelinde filtre yaparak kategoriye göre kursa erişme => "__" operatörü
     
@@ -66,3 +70,12 @@ class Course(models.Model):
     #kurslar=category1.course_set.filter()  yani aslında kategoriler tablosunda hayali olarak "ilişkilitabloismi_set"
     #şeklinde bir kolon oluşturulur ve içinde bu kategoriyi kullanan kurslar saklanır 
     #veya foreign kolonuna related_name="abc" ataması yaparsak artık "course_set" yerine "abc"yi kullanabiliriz
+    
+    
+    
+    #M-N ilşkili tabloya veri ekleme
+
+    
+    #prog=Categories.objects.get(pk=1)
+    #cour=Course.objectd.get(pk=1)
+    #cour.categories.add(prog)

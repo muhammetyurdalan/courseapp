@@ -8,13 +8,13 @@ from .models import Course,Categories
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     #ekranda gösterilecek kolonları seçiyoruz
-    list_display=("title","category","isActive","slug","isUptaded")
+    list_display=("title","isActive","slug","isUptaded")
     #tıklanınca edit sayfasına yönlendir
     list_display_links=("title","slug")
     #sadece okunabilir yapma
     readonly_fields=("slug",)  #prepopulated_fields={"slug":("title",)} slugify yerine bu kos yazılabilir
     #yan tarafta çıkacak filtreleme listesi
-    list_filter=("isActive","isUptaded","category")
+    list_filter=("isActive","isUptaded",)
     #edit sayfasına gitmeden düzenleyebilmek için
     list_editable=("isActive","isUptaded")
     #arama textfielde içinde neleri arayabileceğimiz
