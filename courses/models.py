@@ -41,8 +41,8 @@ class Course(models.Model):
     #related_name ile sorgularda kullanacağımı hayali kolona isim verebiliriz.Açıklama aşağıda
     #category=models.ForeignKey(Categories,default=1,on_delete=models.CASCADE,related_name="selectedCourses")
     
-    #çoka çok ilişki kurmak için aşağıdaki alanı eklemeliyiz.Django otomatik olarak 3. bir ilşki tablosu oluşturur.
-    #ve foreignkey alanı silinmeli çünkü ilşkiyi django otomatşk kurar
+    #M-N ilişki için aşağıdaki kolon oluşturulur ve django otomatik olarak 3.ilşki tablosunu oluşturur
+    #foreignkey kolonu silinmelidir
     categories=models.ManyToManyField(Categories)
     
     
@@ -55,7 +55,7 @@ class Course(models.Model):
         return f"{self.title}"
     
 
-    #1-M İlşikili Kayıda ulaşma
+    #İlşikili Kayıda ulaşma
     
     #1-kurs modelinde filtre yaparak kategoriye göre kursa erişme => "__" operatörü
     
@@ -72,10 +72,20 @@ class Course(models.Model):
     #veya foreign kolonuna related_name="abc" ataması yaparsak artık "course_set" yerine "abc"yi kullanabiliriz
     
     
-    
-    #M-N ilşkili tabloya veri ekleme
-
+    #M-N ilişkili taloya veri ekleme
     
     #prog=Categories.objects.get(pk=1)
-    #cour=Course.objectd.get(pk=1)
-    #cour.categories.add(prog)
+    #k1=Course.objects.get(pk=1)
+    #k1.categories.add(prog)  veya  prog.course_set.add(k1)  her iki tablodan da veri ekleyebilir sorgulayabiliriz
+    
+    #prog da kaç tane course var
+    #prog.course_set.all()  
+    #eğer categories ismli kolona related_name ataması yapmış olsaydık course_set yerine o ismi kullanabilirdik
+    
+    #prog da kaç kurs var sorgusunu Course ile yapmak
+    #Course.objects.filter(isActive=1,categories__name="programlama")
+    
+    #silme 
+    #k1.categories.remove(Categories.objects.get(pk=1))    
+    #k1.categories.clear() tüm kategorileri siler   
+    

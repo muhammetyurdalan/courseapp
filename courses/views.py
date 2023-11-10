@@ -107,7 +107,11 @@ def getCoursesByCategoryName(req,category_slug_name):
         # selected_category=Categories.objects.get(slug=category_slug_name)
         # kurslar=Course.objects.filter(category=selected_category)
         categories=Categories.objects.all()
-        courses=Course.objects.filter(category__slug=category_slug_name,isActive=True)
+        #cat=Categories.objects.get(slug=category_slug_name)
+        #courses=cat.course_set.all()
+        #yukardaki 2 kod yerine aşağıdaki tek kodu yazabiliriz
+        courses=Course.objects.filter(isActive=1,categories__slug=category_slug_name)
+        
         return render(req,'index.html',{"courses":courses,"categories":categories,"selected_slug":category_slug_name})
     except:
         return HttpResponseNotFound("Yanlış Kategori Seçimi")#sayfa bulunamadıysa status=404

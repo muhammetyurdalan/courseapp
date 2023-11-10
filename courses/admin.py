@@ -8,7 +8,8 @@ from .models import Course,Categories
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     #ekranda gösterilecek kolonları seçiyoruz
-    list_display=("title","isActive","slug","isUptaded")
+    #category_list bizim yazdığımız fonksiyon ismi
+    list_display=("title","isActive","slug","isUptaded","category_list")
     #tıklanınca edit sayfasına yönlendir
     list_display_links=("title","slug")
     #sadece okunabilir yapma
@@ -19,9 +20,30 @@ class CourseAdmin(admin.ModelAdmin):
     list_editable=("isActive","isUptaded")
     #arama textfielde içinde neleri arayabileceğimiz
     search_fields=("title","description")
+    
+    
+    
+    def category_list(self,obj):
+        #obj bize gelen tablodaki her course nesnesini temsil eder
+        text=""
+        for cat in obj.categories.all():
+            text+=cat.name+","   
+        text=text[0:-1]#sondaki virgülü siler
 
-
+        return text
+    
+    
 #Admin panelini özelleştirme 2.yöntem
 class CateoriesAdmin(admin.ModelAdmin):
-    pass
+    #ekranda her kategorinin kaç kursa sahip oldğunu yazdırmak için course_count ismli bir fonk yazacaz
+    list_display=("name","slug","course_count")
+    
+    def course_count(self,obj):
+        #obj bize gelen tablodaki her kategori nesnesini temsil eder
+        
+        return obj.course_set.count()
+
+
+
+
 admin.site.register(Categories,CateoriesAdmin)
