@@ -1,0 +1,38 @@
+"{%extends 'layout.html'%}
+
+{% load static %}
+
+{%block 'css_files'%}
+<link rel="stylesheet" href="{% static 'course/js/style.css' %}">
+{%endblock%}
+
+{%block 'content'%}
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-3">
+
+                   <p>
+                    <strong>{{course.title|title}}</strong> İsimli Kursu Silmek İstediğinizden Emin Misiniz?
+
+                    <form  method="POST">
+                        {% csrf_token %}
+                        <a href="{% url "course_list_url" %}" class="btn btn-warning">İptal</a>
+                        <button type="submit" class="btn btn-danger" >Sil</button>
+                    </form>
+                   </p>
+           
+        </div>
+
+
+    </div>
+</div>
+</div>
+{%endblock%}
+
+{%block 'title'%}
+Kayıt
+{%endblock%}"
+
+{%block 'js_files'%}
+<script src="{% static 'course/js/script.js' %}"></script>
+{%endblock%}

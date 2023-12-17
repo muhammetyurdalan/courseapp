@@ -1,0 +1,36 @@
+"{%extends 'layout.html'%}
+
+{% load static %}
+
+{%block 'css_files'%}
+<link rel="stylesheet" href="{% static 'course/js/style.css' %}">
+{%endblock%}
+
+{%block 'content'%}
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-3">
+       
+            <form action="{% url "upload_url" %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="file" class="form-control" id="upload_image" name="images" multiple="true">
+                    <button type="submit" class="btn btn-outline-secondary">Yükle</button>
+                </div>
+            </form>
+           
+        </div>
+
+
+    </div>
+</div>
+</div>
+{%endblock%}
+
+{%block 'title'%}
+Kayıt
+{%endblock%}"
+
+{%block 'js_files'%}
+<script src="{% static 'course/js/script.js' %}"></script>
+{%endblock%}

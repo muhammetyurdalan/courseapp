@@ -1,11 +1,42 @@
 <nav class="navbar navbar-expand-lg bg-warning navbar-dark">
     <div class="container">
-        <a href="/" class="navbar-brand">Course App</a>
+        <a href="{% url "index_url" %}" class="navbar-brand">Course App</a>
 
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item"><a href="/about" class="nav-link">Hakkımızda</a></li>
-            <li class="nav-item"><a href="/contact" class="nav-link">İletişim</a></li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" >
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        </ul>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a href="/about" class="nav-link">Hakkımızda</a></li>
+                <li class="nav-item"><a href="/contact" class="nav-link">İletişim</a></li>
+                 {% if user.is_superuser %}
+                <li class="nav-item"><a href="{% url "create_course_url" %}" class="nav-link">Kurs Ekle</a></li>
+                <li class="nav-item"><a href="{% url "course_list_url" %}" class="nav-link">Kurslar</a></li>
+                {% endif %}
+
+            </ul>
+
+            <ul class="navbar-nav me-1">
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a href="#" class="nav-link">{{user.username|title}}</a></li>
+                <li class="nav-item"><a href="{% url "user_logout_url" %}" class="nav-link">Logout</a></li>
+
+                {% else %}
+                <li class="nav-item"><a href="{% url "user_login_url" %}" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="{% url "user_register_url" %}" class="nav-link">Register</a></li>
+
+                {% endif %}
+
+            </ul>
+
+
+            <form class="d-flex mt-2" action="{% url "search_url" %}">
+                <input class="form-control me-1" type="text" name="q" placeholder="Arama"></input>
+                {% comment %} inputtan alınan veri name olarak verilen "q" ya eklenir=> q=girilendeger.
+                sonra submit edilinceaction daki url in sonuna eklenir=> url?q=girilendeger {% endcomment %}
+                <button type="submit" class="btn btn-secondary">Ara</button>
+            </form>
+         </div>
     </div>
 </nav>

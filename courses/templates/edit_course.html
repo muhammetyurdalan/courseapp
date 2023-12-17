@@ -1,0 +1,42 @@
+"{%extends 'layout.html'%}
+
+{% load static %}
+
+{%block 'css_files'%}
+<link rel="stylesheet" href="{% static 'course/js/style.css' %}">
+{%endblock%}
+
+{%block 'content'%}
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-3">
+          
+            <form method="POST">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="mb-3 {% if field.errors %}invalid{% endif %}">
+                        {{field.errors}}
+                        <label class="form-label" for="{{field.id_for_label}}">{{field.label}}</label>
+                        {{field}}
+                    </div>
+        
+                {% endfor %}
+
+                <button type="submit" class="btn btn-success">Güncelle</button>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+</div>
+{%endblock%}
+
+{%block 'title'%}
+Kayıt
+{%endblock%}"
+
+{%block 'js_files'%}
+<script src="{% static 'course/js/script.js' %}"></script>
+{%endblock%}
