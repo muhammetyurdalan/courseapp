@@ -1,0 +1,25 @@
+{% load static %}
+
+<div id="slider" class="carousel slide mb-3" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        {% for course in page_obj.object_list %}
+            <button type="button" class="{% if forloop.counter0 == 0 %}active{% endif %}" data-bs-target="#slider" data-bs-slide-to="{{ forloop.counter0 }}"></button>
+        {% endfor %}
+    </div>
+    <div class="carousel-inner">
+        {% for course in page_obj.object_list %}
+            <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+                <a href='{% url "course_details_url" course.slug %}'> 
+                    <img src={% static 'courses/img/'|add:course.imageUrl %} class="d-block w-100" style="height:30rem;" alt="">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+        <button class="carousel-control-prev" data-bs-target="#slider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" data-bs-target="#slider" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    
+</div>

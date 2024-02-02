@@ -271,7 +271,7 @@ def index(req):
     #Artık verimizi static verimizden değil gerçek db den çekecez
     
     courses=Course.objects.filter(isActive=1).order_by("-date")
-    p=Paginator(courses,2)
+    p=Paginator(courses,4)
     page=req.GET.get("page",1)
     page_obj=p.page(page)
     
